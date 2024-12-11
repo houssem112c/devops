@@ -1,13 +1,12 @@
 package tn.esprit.eventsproject.entities;
 
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Set;
 
 @Getter
 @Setter

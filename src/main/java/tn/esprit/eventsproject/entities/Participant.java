@@ -1,10 +1,11 @@
 package tn.esprit.eventsproject.entities;
 
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Set;
 
 
@@ -23,6 +24,6 @@ public class Participant implements Serializable {
     @Enumerated(EnumType.STRING)
     Tache tache;
     @ManyToMany
-    Set<Event> events;
+    private Set<Event> events;
 
 }
