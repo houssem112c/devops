@@ -22,8 +22,8 @@
         <java.version>11</java.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <sonar.projectKey>tn.esprit.spring:Foyer</sonar.projectKey>
-        <sonar.projectName>Foyer</sonar.projectName>
+        <sonar.projectKey>tn.esprit.spring:event</sonar.projectKey>
+        <sonar.projectName>event</sonar.projectName>
         <sonar.projectVersion>0.0.1-SNAPSHOT</sonar.projectVersion>
         <sonar.host.url>http://10.0.0.10:9000</sonar.host.url>
         <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
