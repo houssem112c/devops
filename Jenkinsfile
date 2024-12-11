@@ -40,11 +40,23 @@ pipeline {
         stage('Maven Deploy') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'nexus-credentials', usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
-                        sh '''
-                            mvn deploy -Dusername=$NEXUS_USERNAME -Dpassword=$NEXUS_PASSWORD
-                        '''
-                    }
+                    // Create a custom Maven settings file with Nexus credentials
+                    writeFile file: 'settings.xml', text: """
+                    <settings>
+                        <servers>
+                            <server>
+                                <id>nexus-releases</id>
+                                <username>${NEXUS_USERNAME}</username>
+                                <password>${NEXUS_PASSWORD}</password>
+                            </server>
+                        </servers>
+                    </settings>
+                    """
+
+                    // Run Maven deploy using the custom settings file
+                    sh '''
+                        mvn deploy -s settings.xml
+                    '''
                 }
             }
         }
