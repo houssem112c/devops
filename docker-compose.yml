@@ -14,7 +14,7 @@ services:
       - mynetwork
 
   eventsproject-app:
-    image: houssem69/events:latest
+    image: houssem69/event:latest
     container_name: eventsproject-app
     ports:
       - "8082:8082"
