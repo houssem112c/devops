@@ -37,28 +37,12 @@ pipeline {
             }
         }
 
-        stage('Maven Deploy') {
+       stage('Maven Deploy') {
             steps {
-                script {
-                    // Create a custom Maven settings file with Nexus credentials
-                    writeFile file: 'settings.xml', text: """
-                    <settings>
-                        <servers>
-                            <server>
-                                <id>nexus-releases</id>
-                                <username>${NEXUS_USERNAME}</username>
-                                <password>${NEXUS_PASSWORD}</password>
-                            </server>
-                        </servers>
-                    </settings>
-                    """
-
-                    // Run Maven deploy using the custom settings file
-                    sh '''
-                        mvn deploy -s settings.xml
-                    '''
-                }
+                sh 'mvn deploy'
             }
+        }
+
         }
 
         stage('Login to Docker Registry') {
