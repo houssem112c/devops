@@ -6,6 +6,7 @@ pipeline {
         DOCKER_IMAGE_VERSION = 'latest'
         DOCKER_REGISTRY = 'docker.io'
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+        NEXUS_CREDENTIALS = credentials('nexus-credentials') // Nexus credentials
     }
 
     stages {
@@ -38,7 +39,13 @@ pipeline {
 
         stage('Maven Deploy') {
             steps {
-                sh 'mvn deploy'
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'nexus-credentials', usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
+                        sh '''
+                            mvn deploy -Dusername=$NEXUS_USERNAME -Dpassword=$NEXUS_PASSWORD
+                        '''
+                    }
+                }
             }
         }
 
